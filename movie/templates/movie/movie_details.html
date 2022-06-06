@@ -1,0 +1,22 @@
+{% extends 'general_templates/base.html' %}
+
+{% block title %} movies list {% endblock %}
+
+{% block content%}
+<div class="card">
+  <h5 class="card-header">{{movie.name}}</h5>
+  <div class="card-body">
+    <p class="card-text">production year : {{movie.production_year}}</p>
+      <p class="card-text"> actors : <br>
+          {%for actor in movie.actor%}
+          <ul>
+                <li>{{actor.name}}</li>
+          </ul>
+
+          {% endfor %}
+      </p>
+    <p class="card-text">creation time : {{movie.creation_time}}</p>
+  </div>
+</div>
+
+{% endblock %}

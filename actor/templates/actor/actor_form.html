@@ -1,0 +1,16 @@
+{% extends 'general_templates/base.html' %}
+
+{% block title %} Actors list {% endblock %}
+
+{% block content%}
+{% if method == 'create'%}
+<form method="POST" action="{% url 'actor:createActor' %}" enctype="multipart/form-data">
+{% else %}
+   <form method="POST" action="{% url 'actor:updateActor' actor.pk %}" enctype="multipart/form-data">
+       {% endif%}
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-success" type="submit">submit</button>
+</form>
+
+{% endblock %}

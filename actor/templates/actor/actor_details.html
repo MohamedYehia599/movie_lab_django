@@ -1,0 +1,14 @@
+{% extends 'general_templates/base.html' %}
+
+{% block title %} movies list {% endblock %}
+
+{% block content%}
+<div class="card" xmlns:>
+  <h5 class="card-header">{{actor.name}}</h5>
+  <div class="card-body">
+    <p class="card-text">Gender : {{actor.gender}}</p>
+    <p class="card-text">Profile Picture : <img height="10%" width="10%" src="{{request.scheme}}://{{request.get_host}}{{actor.picture.url}}"></p>
+  </div>
+</div>
+
+{% endblock %}

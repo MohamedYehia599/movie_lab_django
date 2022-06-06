@@ -1,0 +1,44 @@
+{% extends 'general_templates/base.html' %}
+
+{% block title %} movies list {% endblock %}
+
+{% block content%}
+
+<h1>movies list</h1>
+<table class="table table-striped">
+<thead>
+<th>Movie Name</th>
+<th>Production Year</th>
+<th>Creation Time</th>
+<th>Actors</th>
+<th>Update Time</th>
+<th>....</th>
+</thead>
+<tbody>
+{% for movie in movies%}
+<tr>
+    <td>{{movie.name}}</td>
+    <td>{{movie.production_year}}</td>
+    <td>{{movie.creation_time}}</td>
+    <td>
+      {% for actor in movies.actor %}
+        <ul>
+            <li>{{actor}}</li>
+        </ul>
+        {% endfor %}
+    </td>
+    <td>{{movie.update_time}}</td>
+    <td><a class="btn btn-light" href="{% url 'movie:showMovie' movie.id %}">Details</a></td>
+    <td><a class="btn btn-danger" href="{% url 'movie:deleteMovie' movie.id %}">Delete</a></td>
+    <td><a class="btn btn-primary" href="{% url 'movie:updateMovie' movie.id %}">Update</a></td>
+</tr>
+{% endfor %}
+
+
+</tbody>
+</table>
+
+<a href="{% url 'movie:createMovie' %}" class="btn btn-success">Create Movie</a>
+
+
+{% endblock %}
