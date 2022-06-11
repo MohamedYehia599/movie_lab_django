@@ -9,6 +9,7 @@ class Actor(models.Model):
     name = models.CharField(verbose_name='Actor Name', max_length=30)
     gender = models.CharField(choices=g,max_length=6 ,default='M')
     picture = models.ImageField(upload_to='actor')
+    birth_date= models.DateField(null=True)
 
     def __str__(self):
         return self.name

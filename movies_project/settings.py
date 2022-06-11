@@ -36,7 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'actor',
-    'movie'
+    'movie',
+    'director',
+    'account',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -81,7 +86,7 @@ WSGI_APPLICATION = 'movies_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_movies',
+        'NAME': 'djangoo',
         'USER': 'root',
         'PASSWORD': 'klorets12',
         'HOST': '127.0.0.1',
@@ -138,3 +143,24 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL='/login/'
+LOGOUT_REDIRECT_URL ='/login/'
+LOGIN_REDIRECT_URL ='/movies/'
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'test.test1233345@gmail.com'
+EMAIL_HOST_PASSWORD = 'klorets12345'
+
+
+###
+
+REST_FRAMEWORK = {
+'DEFAULT_AUTHENTICATION_CLASSES':['rest_framework.authentication.TokenAuthentication'],
+'DEFAULT_PERMISSION_CLASSES':['rest_framework.permissions.IsAuthenticated']
+}
+
+AUTH_USER_MODEL = 'account.User'

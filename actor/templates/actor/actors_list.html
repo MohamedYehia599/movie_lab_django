@@ -17,11 +17,15 @@
 <tr>
     <td>{{actor.name}}</td>
     <td>{{actor.gender}}</td>
-    <td><img src="{{request.scheme}}://{{request.get_host}}/media_root/{{actor.picture}}"></td>
-<!--        <td>{{request.scheme}}://{{request.get_host}}media_root/{{actor.picture}}</td>-->
+
+    <td><img width="10%" height="10%" src="{{request.scheme}}://{{request.get_host}}{{actor.picture.url}}"></td>
+
+
    <td><a class="btn btn-dark" href="{% url 'actor:showActor' actor.pk %}">Details</a></td>
+    {% if request.user.is_authenticated %}
     <td><a class="btn btn-danger" href="{% url 'actor:deleteActor' actor.pk %}">Delete</a></td>
     <td><a class="btn btn-primary" href="{% url 'actor:updateActor' actor.pk %}">Update</a></td>
+    {% endif %}
 </tr>
 {% endfor %}
 

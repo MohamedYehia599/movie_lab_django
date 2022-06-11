@@ -12,12 +12,12 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Actor',
+            name='Director',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=30, verbose_name='Actor Name')),
+                ('name', models.CharField(max_length=30, verbose_name='Director Name')),
+                ('age', models.IntegerField()),
                 ('gender', models.CharField(choices=[('M', 'Male'), ('F', 'Female')], default='M', max_length=6)),
-                ('picture', models.ImageField(upload_to='actor')),
             ],
         ),
     ]

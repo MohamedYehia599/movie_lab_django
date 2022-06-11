@@ -8,9 +8,9 @@
   <div class="card-body">
     <p class="card-text">production year : {{movie.production_year}}</p>
       <p class="card-text"> actors : <br>
-          {%for actor in movie.actor%}
+          {%for actor in actors %}
           <ul>
-                <li>{{actor.name}}</li>
+                <li>{{actor}}</li>
           </ul>
 
           {% endfor %}

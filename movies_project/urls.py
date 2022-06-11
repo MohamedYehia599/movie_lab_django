@@ -18,10 +18,17 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import  include
 from django.conf import settings
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('actors/', include('actor.urls')),
     path('movies/', include('movie.urls')),
+    path('api/v1/movies',include('movie.api.v1.urls')),
+    path('api/v1/actors',include('actor.api.v1.urls')),
+    path('api/v1/account/',include('account.api.v1.urls')),
+    path('',include('django.contrib.auth.urls')),
+
+    path('',include('account.urls'))
 ]
 if settings.DEBUG:
     from django.conf.urls.static import static

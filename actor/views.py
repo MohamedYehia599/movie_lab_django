@@ -3,9 +3,13 @@ from django.shortcuts import render, redirect , reverse
 
 from .forms import ActorForm
 from .models import Actor
+from django.contrib.auth.decorators import login_required
 def getActorsList(request):
     actors=Actor.objects.all()
+    for actor in actors:
+        print(f'from actors list {actor.picture}')
     return render(request,'actor/actors_list.html',context={'actors':actors})
+@login_required
 def createActor(request):
     method = 'create'
     print(request.method)
@@ -37,4 +41,5 @@ def updateActor(request,pk):
 
 def showActor(request,pk):
     actor = Actor.objects.get(pk=pk)
+    print(f'from show actor {actor.picture}')
     return render(request,'actor/actor_details.html',context={'actor':actor})

@@ -21,16 +21,18 @@
     <td>{{movie.production_year}}</td>
     <td>{{movie.creation_time}}</td>
     <td>
-      {% for actor in movies.actor %}
+      {% for actor in movie.actor.all %}
         <ul>
-            <li>{{actor}}</li>
+            <li>{{actor.name}}</li>
         </ul>
         {% endfor %}
     </td>
     <td>{{movie.update_time}}</td>
     <td><a class="btn btn-light" href="{% url 'movie:showMovie' movie.id %}">Details</a></td>
+    {% if request.user.is_authenticated%}
     <td><a class="btn btn-danger" href="{% url 'movie:deleteMovie' movie.id %}">Delete</a></td>
     <td><a class="btn btn-primary" href="{% url 'movie:updateMovie' movie.id %}">Update</a></td>
+    {% endif %}
 </tr>
 {% endfor %}
 

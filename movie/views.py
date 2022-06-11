@@ -3,20 +3,18 @@ from django.urls import reverse
 from actor.models import Actor
 from .models import Movie
 from .forms import MovieForm
+from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponse, JsonResponse
 # Create your views here.
 def getMoviesList(request):
     movies = Movie.objects.all()
-    # actors = movies.actor.all()
-    # print(actors)
-    # movie=Movie.objects.get(pk=1)
-    # print(movies)
-    # actors=Actor.objects.filter(movie_id=1)
-    # mov=Movie.objects.filter(actor__name='ahmed')
-    # print(mov.actor.all())
+    #how to get actors in each movie
+    # for movie in movies :
+    #     for actor in movie.actor.all():
+    #         print(actor.name)
 
     return render(request, 'movie/movies_list.html',context={'movies':movies})
-    # return JsonResponse(movies)
+@login_required
 def createMovie(request):
     method='create'
     if request.method =='GET' :
@@ -48,4 +46,7 @@ def updateMovie(request,pk):
 
 def showMovie(request,pk):
     movie=Movie.objects.get(pk=pk)
-    return render(request,'movie/movie_details.html',context={'movie':movie})
+    actors =[]
+    for actor in movie.actor.all():
+        actors.append(actor)
+    return render(request,'movie/movie_details.html',context={'movie':movie,'actors':actors})
